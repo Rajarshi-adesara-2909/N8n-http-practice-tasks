@@ -2,7 +2,9 @@
 
 Complete these tasks in n8n to master the HTTP Request node. 
 - **Local Access**: `http://localhost:3005`
-- **Network Access**: Use the IP address shown in your terminal (e.g., `http://192.168.x.x:3005`) if testing from another computer.
+- **Network Access**: Use `http://192.168.1.10:3005` if testing from your other computer (192.168.1.2).
+- **Public Access**: Use your `localhost.run` URL if testing from the internet.
+- **Tunnel Command**: `ssh -R 80:127.0.0.1:3005 nokey@localhost.run`
 
 ---
 
@@ -83,3 +85,17 @@ Complete these tasks in n8n to master the HTTP Request node.
    > **Hint**: In n8n, use a **Conditional** or **Filter** node to check the value of an incoming property that you've set as a header.
 7. **Performance Test**: Set up a **Wait** node and a loop to spam 50 `GET` requests; monitor the server terminal for any slowdowns or log overflows.
    > **Hint**: Use a loop with a counter. Add a **Wait** node of 100ms to avoid overwhelming your own CPU!
+
+---
+
+## 🌐 Network Mission (Crossing PCs)
+*Focus: Verifying your setup between PC 1 (192.168.1.10) and PC 2 (192.168.1.2).*
+
+1. **Cross-PC Discovery**: From PC 2, open a browser and go to `http://192.168.1.10:3005`. Can you see the "Welcome" message?
+   > **Hint**: If you can't see it, check the Firewall steps on PC 1.
+2. **Terminal Watch**: While triggerring a request from PC 2, watch the terminal on PC 1. Do you see the logs appearing instantly?
+   > **Hint**: This confirms your "Server Logging" is working and you can see exactly what n8n is sending.
+3. **The Remote Header**: From PC 2, send a header `X-From: PC-2`. Verify on PC 1 that the header says "PC-2".
+   > **Hint**: This proves you can send custom metadata across your local network!
+4. **Global Mission**: Using your phone (on mobile data, not Wi-Fi), try calling your `localhost.run` URL. Can you see the welcome message on your phone?
+   > **Hint**: This proves your local server is now live on the entire internet!
